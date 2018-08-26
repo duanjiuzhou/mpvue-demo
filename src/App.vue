@@ -1,12 +1,14 @@
 <script>
+  import {get} from './util'
+
   export default {
-    created () {
+    async created () {
+      const res = await get('/weapp/demo')
+      console.log(res)
       console.log('小程序启动了~')
     }
   }
 </script>
 <style>
-.ss{
-  color: #d8e2ee;
-}
+
 </style>
