@@ -1,0 +1,11 @@
+
+<text class='iconfont icon-shijian' style='color:#7F8389;'></text>
+
+<!-- 如果只是展示用户头像昵称，可以使用 <open-data /> 组件 -->
+<open-data class='url-img' type="userAvatarUrl"></open-data>
+<open-data type="userNickName"></open-data>
+<!-- 需要使用 button 来授权登录 -->
+<button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
+<view wx:else>请升级微信版本</view>
+
+<navigator url="/pages/index/index" hover-class="navigator-hover">跳转到新页面</navigator>
