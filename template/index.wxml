@@ -1,0 +1,4 @@
+<!--template/index.wxml-->
+<template name="wxNotice">
+  <view>{{title}}</view>
+</template>

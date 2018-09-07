@@ -1,6 +1,0 @@
-/* mypages/flex/flex.wxss */
-.url-img{
-  width: 100rpx;
-  height: 100rpx;
-  border-radius: 50%;
-}

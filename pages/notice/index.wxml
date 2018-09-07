@@ -1,0 +1,6 @@
+<!--pages/notice/index.wxml-->
+<import src="../../template/index" />
+
+<view>
+<template is="wxNotice" data="{{title}}" />
+</view>
