@@ -4,7 +4,8 @@
     "pages/shop-cart/index",
     "pages/my/index",
     "pages/notice/index",
-    "template/index"
+    "template/index",
+    "pages/goods-details/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

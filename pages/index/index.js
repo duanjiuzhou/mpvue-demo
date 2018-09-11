@@ -9,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    searchInput:'',
     // 轮播图数据
     autoplay: true,
     interval: 3000,
@@ -80,7 +81,10 @@ Page({
    * 监听输入框数据
    */
   listenerSearchInput: (e) => {
-    console.log(e.detail)
+    console.log(e.detail.value)
+    this.setData({
+      searchInput: e.detail.value
+    })
   },
   /**
    * 搜索
@@ -137,7 +141,8 @@ Page({
   tabClick: function(e) {
     this.setData({
       activeCategoryId: e.currentTarget.id
-    })
+    });
+    this.getGoodsList(e.currentTarget.id);
   },
   /**
    * 获取轮播图数据
@@ -185,7 +190,7 @@ Page({
           categories: categories,
           activeCategoryId: 0
         });
-        // that.getGoodsList(0);
+        that.getGoodsList(0);
       }
     })
   },
@@ -213,6 +218,43 @@ Page({
    * @param categoryId 商品列表类型id {string/number}
    */
   getGoodsList: function(categoryId) {
-
+    if (categoryId == 0) {
+      categoryId = "";
+    }
+    
+    var that = this;
+    wx.request({
+      url: 'https://api.it120.cc/' + app.globalData.subDomain + '/shop/goods/list',
+      data: {
+        categoryId: categoryId,
+        nameLike: that.data.searchInput
+      },
+      success: function (res) {
+        console.log(res)
+        that.setData({
+          goods: [],
+          loadingMoreHidden: true
+        });
+        var goods = [];
+        if (res.data.code != 0 || res.data.data.length == 0) {
+          that.setData({
+            loadingMoreHidden: false,
+          });
+          return;
+        }
+        goods = res.data.data;
+        that.setData({
+          goods: goods,
+        });
+      }
+    })
   },
+  /**
+   * 进入详情页面
+   */
+  toDetailsTap: function (e){
+    wx.navigateTo({
+      url: "/pages/goods-details/index?id=" + e.currentTarget.dataset.id
+    })
+  }
 })
